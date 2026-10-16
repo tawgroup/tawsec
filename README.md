@@ -18,7 +18,7 @@ Agent: [blue-code-review] → patches → re-runs the attack to verify
 
 | Team | Color | What it means here |
 |---|---|---|
-| 🔴 **Red** | Offense | Skills that probe for one vulnerability class each: recon, SQLi, XSS, broken auth, IDOR, SSRF. |
+| 🔴 **Red** | Offense | Skills that probe for one vulnerability class each: recon, SQLi, XSS, broken auth, IDOR, SSRF, prompt injection. |
 | 🔵 **Blue** | Defense | Skills that review code, scan secrets, audit dependencies, harden headers, read logs, and handle incidents. |
 | 🟣 **Purple** | Learning | The lab loop: attack a practice app with a red skill, fix it with a blue skill, re-attack to verify. This is where the learning happens. |
 
@@ -63,6 +63,7 @@ Restart your agent. Then try: *"set up a security lab for me"*.
 | `red-broken-auth` | Authentication | Enumerate users, abuse password reset, attack JWTs, test rate limits |
 | `red-idor` | Broken access control | Flip object IDs, escalate horizontally and vertically |
 | `red-ssrf` | Server-side request forgery | Abuse URL fetchers to reach cloud metadata and internal services |
+| `red-prompt-injection` | LLM / prompt injection | Extract system prompts, enumerate tools, plant indirect injections, jailbreak — on your own AI product |
 
 ### 🔵 Blue team — make it not exploitable
 

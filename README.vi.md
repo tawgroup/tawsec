@@ -18,7 +18,7 @@ Agent: [blue-code-review] → vá → chạy lại tấn công để verify
 
 | Đội | Vai trò | Ở đây nghĩa là gì |
 |---|---|---|
-| 🔴 **Red** | Tấn công | Mỗi skill dò một loại lỗ hổng: recon, SQLi, XSS, broken auth, IDOR, SSRF. |
+| 🔴 **Red** | Tấn công | Mỗi skill dò một loại lỗ hổng: recon, SQLi, XSS, broken auth, IDOR, SSRF, prompt injection. |
 | 🔵 **Blue** | Phòng thủ | Review code, quét secret lộ, audit dependency, siết header, đọc log, xử lý sự cố. |
 | 🟣 **Purple** | Học tập | Vòng lab: tấn công app mồi bằng skill red → vá bằng skill blue → tấn công lại để verify. Đây là chỗ học chính. |
 
@@ -48,6 +48,7 @@ Khởi động lại agent, rồi thử: *"dựng lab bảo mật cho tôi"*.
 | `red-broken-auth` | Xác thực | Liệt kê user, abuse reset password, tấn công JWT, test rate limit |
 | `red-idor` | Broken access control | Đổi ID object, leo quyền ngang và dọc |
 | `red-ssrf` | SSRF | Abuse tính năng fetch URL để chạm metadata cloud và service nội bộ |
+| `red-prompt-injection` | LLM / prompt injection | Đòi system prompt, dò tool, cài trang bẫy inject, jailbreak — trên sản phẩm AI của bạn |
 
 ### 🔵 Blue team
 

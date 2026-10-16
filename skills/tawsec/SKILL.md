@@ -3,8 +3,8 @@ name: tawsec
 description: >
   Router for the tawsec security skill suite — red-team (offense), blue-team
   (defense) and purple-team (learning lab) skills organized by vulnerability
-  class: recon, SQLi, XSS, broken auth, IDOR, SSRF, code review, secrets,
-  dependencies, headers, log detection, incident response.
+  class: recon, SQLi, XSS, broken auth, IDOR, SSRF, prompt injection, code
+  review, secrets, dependencies, headers, log detection, incident response.
 when_to_use: >
   Use whenever the user asks anything about security testing or learning:
   "pentest my app", "hack my staging", "kiểm tra bảo mật", "test bảo mật",
@@ -35,6 +35,7 @@ Ask ONE clarifying question if the target vulnerability class is unclear, then h
 | Database, login bypass, `' OR 1=1`, query params | `red-sqli` |
 | Scripts in inputs, cookie stealing, `<script>` | `red-xss` |
 | Login, password reset, JWT, sessions, brute force, WordPress login/xmlrpc | `red-broken-auth` |
+| Chatbot / AI agent: đòi system prompt, tool listing, trang bẫy inject, jailbreak | `red-prompt-injection` |
 | "xem được dữ liệu user khác", change IDs in URL, access control | `red-idor` |
 | Webhook, URL fetch, image proxy, cloud metadata | `red-ssrf` |
 
