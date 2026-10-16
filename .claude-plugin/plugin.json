@@ -1,7 +1,7 @@
 {
   "name": "tawsec",
   "displayName": "tawsec — Red/Blue Security Skills",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Learn and practice web security with red-team (offense), blue-team (defense) and purple-team (learning lab) skills, organized by vulnerability class.",
   "author": {
     "name": "tawgroup",
@@ -10,6 +10,14 @@
   "homepage": "https://github.com/tawgroup/tawsec",
   "repository": "https://github.com/tawgroup/tawsec",
   "license": "MIT",
-  "keywords": ["security", "red-team", "blue-team", "pentest", "owasp", "learning", "skills"],
+  "keywords": [
+    "security",
+    "red-team",
+    "blue-team",
+    "pentest",
+    "owasp",
+    "learning",
+    "skills"
+  ],
   "skills": "./skills/"
 }

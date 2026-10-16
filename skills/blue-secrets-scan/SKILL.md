@@ -17,6 +17,8 @@ allowed-tools: Read, Grep, Glob, Bash(gitleaks *), Bash(trufflehog *), Bash(git 
 
 Leaked secrets are the most common way side projects and startups actually get breached — not zero-days, just a key in a public repo and a bot that finds it in 30 seconds. Your job: find them, rotate them, keep them out forever.
 
+> No `rg` on the box? Every search below works with `grep -rn` — don't stall the scan installing tools.
+
 ## Workflow
 
 ### 1. Scan the working tree AND the history

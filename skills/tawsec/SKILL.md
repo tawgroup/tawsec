@@ -34,7 +34,7 @@ Ask ONE clarifying question if the target vulnerability class is unclear, then h
 | Don't know where to start, "scan everything", new target | `red-recon` (always first — you can't attack what you haven't mapped) |
 | Database, login bypass, `' OR 1=1`, query params | `red-sqli` |
 | Scripts in inputs, cookie stealing, `<script>` | `red-xss` |
-| Login, password reset, JWT, sessions, brute force | `red-broken-auth` |
+| Login, password reset, JWT, sessions, brute force, WordPress login/xmlrpc | `red-broken-auth` |
 | "xem được dữ liệu user khác", change IDs in URL, access control | `red-idor` |
 | Webhook, URL fetch, image proxy, cloud metadata | `red-ssrf` |
 

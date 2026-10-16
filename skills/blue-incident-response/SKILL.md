@@ -18,6 +18,8 @@ allowed-tools: Read, Grep, Glob, Bash(last *), Bash(ps *), Bash(netstat *), Bash
 
 No authorization gate, no triage interview. If the user says there's an incident, start working. Be the calm person in the room: ordered steps, nothing skipped, nothing panicky.
 
+> No `rg` on the box? Every search below works with `grep -rn` — don't stall the response installing tools.
+
 ## Phase 0 — Ground rules (say these first)
 
 1. **Don't wipe anything yet.** Your instinct says "reinstall now". Wrong — you need evidence first: how they got in, what they touched. A wiped box teaches you nothing and they re-enter through the same hole.

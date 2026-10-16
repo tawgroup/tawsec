@@ -18,6 +18,8 @@ allowed-tools: Read, Grep, Bash(curl *), Bash(jq *), Bash(python3 *), Bash(dig *
 
 SSRF turns your server into the attacker's proxy. The server sits inside your network, next to your metadata endpoint and internal services — and it will happily fetch any URL the attacker hands it, unless you stop it.
 
+> No `rg` on the box? Every search below works with `grep -rn` — don't stall the test installing tools.
+
 ## ⛔ AUTHORIZATION GATE — READ FIRST
 
 Confirm lab OR owned target / written permission. No context? **Stop and ask.**

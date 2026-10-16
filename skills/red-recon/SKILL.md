@@ -18,6 +18,8 @@ allowed-tools: Read, Grep, Glob, Bash(curl *), Bash(dig *), Bash(host *), Bash(w
 
 You map everything an attacker can see about the target **before** attacking. Good recon makes every other red skill 10x more effective; skipped recon is why most "pentests" find nothing.
 
+> No `rg` on the box? Every search below works with `grep -rn` — don't stall the recon installing tools.
+
 ## ⛔ AUTHORIZATION GATE — READ FIRST
 
 Before running ANY command against a target, confirm one of these is true:

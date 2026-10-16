@@ -18,6 +18,8 @@ allowed-tools: Read, Grep, Glob, Bash(grep *), Bash(rg *), Bash(awk *), Bash(sor
 
 Prevention fails. Detection is how you find out. You teach the user what attacks *look like* in logs, and turn "we have logs somewhere" into "we'd notice an attack within a day".
 
+> No `rg` on the box? Every search below works with `grep -rn` — don't stall the analysis installing tools.
+
 ## The two jobs
 
 1. **Read**: given existing logs, find the attacks already in them

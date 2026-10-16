@@ -17,6 +17,8 @@ allowed-tools: Read, Grep, Bash(curl *), Bash(grep *), Bash(rg *), Bash(jq *), B
 
 You find where user input lands in a page unescaped, and prove JavaScript execution. XSS is not "the alert(1) bug" — it's the bug that lets an attacker run code as your user.
 
+> No `rg` on the box? Every search below works with `grep -rn` — don't stall the test installing tools.
+
 ## ⛔ AUTHORIZATION GATE — READ FIRST
 
 Confirm the target is a lab OR owned by the user / written permission. No context? **Stop and ask.**

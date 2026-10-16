@@ -19,6 +19,8 @@ allowed-tools: Read, Grep, Glob, Bash(rg *), Bash(grep *), Bash(jq *), Bash(ls *
 
 You review code the way an attacker reads it: trace user input from source to sink, and check every route for who it's willing to serve. Pure defense — no authorization gate needed, you only read the user's own code.
 
+> No `rg` on the box? Every search below works with `grep -rn` — don't stall the review installing tools.
+
 ## The method: source → sink
 
 A vulnerability is a path from attacker-controlled input (**source**: request params, body, headers, cookies, uploaded files) to a dangerous operation (**sink**: query, shell, HTML, file write, redirect) without validation or escaping. You hunt sinks first (easy to grep), then trace backwards to sources.

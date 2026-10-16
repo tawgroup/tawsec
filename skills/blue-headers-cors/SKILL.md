@@ -19,6 +19,8 @@ allowed-tools: Read, Grep, Glob, Bash(curl *), Bash(rg *), Bash(grep *), Bash(op
 
 Headers and CORS are the cheapest defense-in-depth you can buy: a few lines of config that neutralize whole attack classes. You audit what the server actually sends, then fix it in config.
 
+> No `rg` on the box? Every search below works with `grep -rn` — don't stall the audit installing tools.
+
 ## Workflow
 
 ### 1. See what the server really sends
@@ -42,6 +44,21 @@ Test multiple routes — headers often differ between the frontend, `/api`, and 
 | `Permissions-Policy` | deny what you don't use (`camera=(), microphone=(), geolocation=()`) | Feature abuse |
 
 Start CSP in report-only mode (`Content-Security-Policy-Report-Only`) on production, collect violations, then enforce. Enforcing blind breaks apps.
+
+**Missing `X-Frame-Options`/`frame-ancestors`? Prove the clickjacking** with a local
+PoC the stakeholder can click — a transparent iframe of the real site under a
+decoy button:
+
+```html
+<!-- clickjacking-poc.html — open locally, then click "Win a prize" -->
+<button style="position:fixed;top:50%;left:50%;z-index:10">Win a prize</button>
+<iframe src="https://TARGET/settings/delete-account"
+        style="opacity:0;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9"></iframe>
+```
+
+Clicking the decoy lands on the real button underneath. That demo — plus "the
+fix is one config line" — is what convinces people to ship
+`X-Frame-Options: DENY` + `frame-ancestors 'none'`.
 
 ### 3. Cookie flags
 

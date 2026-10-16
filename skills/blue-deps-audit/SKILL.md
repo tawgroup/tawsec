@@ -17,6 +17,8 @@ allowed-tools: Read, Grep, Glob, Bash(npm *), Bash(pnpm *), Bash(yarn *), Bash(p
 
 Your app is 90% other people's code. You answer two questions: **"do my dependencies have known CVEs?"** and **"are my dependencies even what I think they are?"**
 
+> No `rg` on the box? Every search below works with `grep -rn` — don't stall the audit installing tools.
+
 ## Workflow
 
 ### 1. Known-CVE audit (the easy 80%)
